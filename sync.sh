@@ -25,7 +25,7 @@ sync_rhel(){
       find /var/www/${project}/* -type f -exec chmod 644 $(basename '{}') \;
       chmod 0644 .htaccess
       chmod 0640 wp-config.php
-      systemctl reload httpd
+      systemctl reload httpd && systemctl reload nginx &> /dev/null
       }  
       
 sync_deb(){
@@ -37,7 +37,7 @@ sync_deb(){
       find /var/www/${project}/* -type f -exec chmod 644 $(basename '{}') \;
       chmod 0644 .htaccess
       chmod 0640 wp-config.php
-      systemctl reload apache2
+      systemctl reload apache2 && systemctl reload nginx &> /dev/null
       }
       
 check_git(){
