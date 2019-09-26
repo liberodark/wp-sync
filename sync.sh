@@ -5,7 +5,7 @@
 # Thanks : 
 # License: GNU GPLv3
 
-version="0.0.1"
+version="0.0.9"
 
 #=================================================
 # RETRIEVE ARGUMENTS FROM THE MANIFEST AND VAR
