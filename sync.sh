@@ -5,7 +5,7 @@
 # Thanks : 
 # License: GNU GPLv3
 
-version="0.1.1"
+version="0.1.2"
 
 #=================================================
 # RETRIEVE ARGUMENTS FROM THE MANIFEST AND VAR
@@ -49,24 +49,16 @@ echo "Install Git Server ($distribution)"
 
     if [[ "$distribution" = CentOS || "$distribution" = CentOS || "$distribution" = Red\ Hat || "$distribution" = Fedora || "$distribution" = Suse || "$distribution" = Oracle ]]; then
       yum install -y git &> /dev/null
-
-      sync_rhel || exit
     
     elif [[ "$distribution" = Debian || "$distribution" = Ubuntu || "$distribution" = Deepin ]]; then
       apt-get update &> /dev/null
       apt-get install -y git --force-yes &> /dev/null
-    
-      sync_deb || exit
       
     elif [[ "$distribution" = Clear ]]; then
       swupd bundle-add git &> /dev/null
-    
-      compile_nrpe_ssl || exit
       
     elif [[ "$distribution" = Manjaro || "$distribution" = Arch\ Linux ]]; then
       pacman -S git --noconfirm &> /dev/null
-    
-      compile_nrpe_ssl || exit
 
     fi
 fi
@@ -84,14 +76,10 @@ echo "Sync WP Server ($distribution)"
       sync_deb || exit
       
     elif [[ "$distribution" = Clear ]]; then
-      swupd bundle-add git &> /dev/null
-    
-      compile_nrpe_ssl || exit
+      sync_deb || exit
       
     elif [[ "$distribution" = Manjaro || "$distribution" = Arch\ Linux ]]; then
-      pacman -S git --noconfirm &> /dev/null
-    
-      compile_nrpe_ssl || exit
+      sync_deb || exit
 fi
 }
 
