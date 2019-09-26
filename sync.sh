@@ -12,28 +12,29 @@ version="0.0.9"
 #=================================================
 
 distribution=$(cat /etc/*release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/["]//g' | awk '{print $1}')
-#user=liberodark
-#project=myproject
+user=liberodark
+project=myproject
+http_server=apache
 
 sync_rhel(){
-      mkdir -p /var/www/$project/
-      cd /var/www/$project/
+      mkdir -p /var/www/${project}/
+      cd /var/www/${project}/ || exit
       git pull
-      chown -R nginx: /var/www/$project/
-      find /var/www/wp-syms/* -type d -exec chmod 755 $(basename '{}') \;
-      find /var/www/wp-syms/* -type f -exec chmod 644 $(basename '{}') \;
+      chown -R $http_server: /var/www/${project}/
+      find /var/www/${project}/* -type d -exec chmod 755 $(basename '{}') \;
+      find /var/www/${project}/* -type f -exec chmod 644 $(basename '{}') \;
       chmod 0644 .htaccess
       chmod 0640 wp-config.php
       systemctl reload httpd
       }  
       
 sync_deb(){
-      mkdir -p /var/www/$project/
-      cd /var/www/$project/
+      mkdir -p /var/www/${project}/
+      cd /var/www/${project}/ || exit
       git pull
-      chown -R nginx: /var/www/$project/
-      find /var/www/wp-syms/* -type d -exec chmod 755 $(basename '{}') \;
-      find /var/www/wp-syms/* -type f -exec chmod 644 $(basename '{}') \;
+      chown -R $http_server: /var/www/${project}/
+      find /var/www/${project}/* -type d -exec chmod 755 $(basename '{}') \;
+      find /var/www/${project}/* -type f -exec chmod 644 $(basename '{}') \;
       chmod 0644 .htaccess
       chmod 0640 wp-config.php
       systemctl reload apache2
@@ -49,13 +50,13 @@ echo "Install Git Server ($distribution)"
     if [[ "$distribution" = CentOS || "$distribution" = CentOS || "$distribution" = Red\ Hat || "$distribution" = Fedora || "$distribution" = Suse || "$distribution" = Oracle ]]; then
       yum install -y git &> /dev/null
 
-      compile_nrpe_ssl || exit
+      sync_rhel || exit
     
     elif [[ "$distribution" = Debian || "$distribution" = Ubuntu || "$distribution" = Deepin ]]; then
       apt-get update &> /dev/null
       apt-get install -y git --force-yes &> /dev/null
     
-      compile_nrpe_ssl || exit
+      sync_deb || exit
       
     elif [[ "$distribution" = Clear ]]; then
       swupd bundle-add git &> /dev/null
@@ -75,11 +76,11 @@ fi
 # ASK
 #=================================================
 
-echo "What is your git user ?"
-read -r user
+#echo "What is your git user ?"
+#read -r user
 
-echo "What is your git project ?"
-read -r project
+#echo "What is your git project ?"
+#read -r project
 
 #==============================================
 # INSTALL Git
@@ -94,4 +95,3 @@ read -r project
 #==============================================
 
 check_git
-sync
