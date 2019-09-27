@@ -5,7 +5,7 @@
 # Thanks : 
 # License: GNU GPLv3
 
-version="0.1.2"
+version="0.1.3"
 
 #=================================================
 # RETRIEVE ARGUMENTS FROM THE MANIFEST AND VAR
@@ -15,12 +15,13 @@ distribution=$(cat /etc/*release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' 
 user=liberodark
 project=myproject
 http_server=apache
+chown_user=apache
 
 sync_rhel(){
       mkdir -p /var/www/${project}/
       cd /var/www/${project}/ || exit
       git pull
-      chown -R $http_server: /var/www/${project}/
+      chown -R $chown_user: /var/www/${project}/
       find /var/www/${project}/* -type d -exec chmod 755 $(basename '{}') \;
       find /var/www/${project}/* -type f -exec chmod 644 $(basename '{}') \;
       chmod 0644 .htaccess
@@ -32,7 +33,7 @@ sync_deb(){
       mkdir -p /var/www/${project}/
       cd /var/www/${project}/ || exit
       git pull
-      chown -R $http_server: /var/www/${project}/
+      chown -R $chown_user: /var/www/${project}/
       find /var/www/${project}/* -type d -exec chmod 755 $(basename '{}') \;
       find /var/www/${project}/* -type f -exec chmod 644 $(basename '{}') \;
       chmod 0644 .htaccess
