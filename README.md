@@ -1,5 +1,5 @@
-# wp-sync
-WP Sync
+# WP Sync
+
 
 
 ### Linux Compatibility :
