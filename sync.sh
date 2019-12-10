@@ -64,6 +64,9 @@ echo "Install Git Server ($distribution)"
     elif [ "$distribution" = "Manjaro" ] || [ "$distribution" = "Arch\ Linux" ]; then
       pacman -S git --noconfirm &> /dev/null
       
+    elif [ "$distribution" = "Gentoo" ]; then
+      sudo emerge --ask n git &> /dev/null
+      
     elif [ "$distribution" = "openSUSE" ] || [ "$distribution" = "SUSE" ]; then
       zypper install -y git > /dev/null 2>&1
 
