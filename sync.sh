@@ -48,18 +48,24 @@ echo "Install Git Server ($distribution)"
 
   if ! command -v git &> /dev/null; then
 
-    if [[ "$distribution" = CentOS || "$distribution" = CentOS || "$distribution" = Red\ Hat || "$distribution" = Fedora || "$distribution" = Suse || "$distribution" = Oracle ]]; then
+    if [ "$distribution" = "CentOS" ] || [ "$distribution" = "Red\ Hat" ] || [ "$distribution" = "Oracle" ]; then
       yum install -y git &> /dev/null
+      
+    elif [ "$distribution" = "Fedora" ]; then
+      dnf install -y git > /dev/null 2>&1
     
-    elif [[ "$distribution" = Debian || "$distribution" = Ubuntu || "$distribution" = Deepin ]]; then
+    elif [ "$distribution" = "Debian" ] || [ "$distribution" = "Ubuntu" ] || [ "$distribution" = "Deepin" ]; then
       apt-get update &> /dev/null
       apt-get install -y git --force-yes &> /dev/null
       
-    elif [[ "$distribution" = Clear ]]; then
+    elif [ "$distribution" = "Clear" ]; then
       swupd bundle-add git &> /dev/null
       
-    elif [[ "$distribution" = Manjaro || "$distribution" = Arch\ Linux ]]; then
+    elif [ "$distribution" = "Manjaro" ] || [ "$distribution" = "Arch\ Linux" ]; then
       pacman -S git --noconfirm &> /dev/null
+      
+    elif [ "$distribution" = "openSUSE" ] || [ "$distribution" = "SUSE" ]; then
+      zypper install -y git > /dev/null 2>&1
 
     fi
 fi
