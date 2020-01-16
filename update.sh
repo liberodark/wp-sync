@@ -41,6 +41,15 @@ update_plugin () {
 update_plugin contact-form-7
 update_plugin w3-total-cache
 update_plugin duplicate-post
+update_plugin cookie-notice
+update_plugin flow-flow
+update_plugin flow-flow-social-streams
+update_plugin google-analytics-dashboard-for-wp
+update_plugin js_composer
+update_plugin page-links-to
+update_plugin revslider
+update_plugin sitepress-multilingual-cms
+update_plugin wp-booklet
 
 #=================================================
 # SECURING FILES AND DIRECTORIES
