@@ -77,3 +77,4 @@ rm -f $final_path/wp-cli.phar
 rm -f $final_path/readme.html
 rm -f $final_path/wp-config-sample.php
 rm -f $final_path/license.txt
+rm -rf $final_path/wp-content/themes/twenty*
