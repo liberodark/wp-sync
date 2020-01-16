@@ -22,6 +22,14 @@ update_plugin () {
 #=================================================
 "$wpcli_alias" maintenance-mode activate
 
+
+#=================================================
+# WORDPRESS UPDATE
+#=================================================
+"$wpcli_alias" core update
+"$wpcli_alias" core update-db
+"$wpcli_alias" core verify-checksums
+
 #=================================================
 # INSTALL PLUGINS
 #=================================================
@@ -51,6 +59,9 @@ chown root: $final_path/wp-config.php
 systemctl reload nginx
 
 #=================================================
-# REMOVE WP-CLI
+# REMOVE WP-CLI & FILES
 #=================================================
 rm -f $final_path/wp-cli.phar
+rm -f $final_path/readme.html
+rm -f $final_path/wp-config-sample.php
+rm -f $final_path/license.txt
