@@ -20,7 +20,7 @@ update_plugin () {
 #=================================================
 # ACTIVE MAINTENANCE MODE
 #=================================================
-"$wpcli_alias" maintenance-mode on
+"$wpcli_alias" maintenance-mode activate
 
 #=================================================
 # INSTALL PLUGINS
@@ -43,7 +43,7 @@ chown root: $final_path/wp-config.php
 #=================================================
 # ACTIVE MAINTENANCE MODE
 #=================================================
-"$wpcli_alias" maintenance-mode off
+"$wpcli_alias" maintenance-mode deactivate
 
 #=================================================
 # RELOAD NGINX
