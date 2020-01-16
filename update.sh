@@ -18,9 +18,13 @@ update_plugin () {
 }
 
 #=================================================
+# ACTIVE MAINTENANCE MODE
+#=================================================
+"$wpcli_alias" maintenance-mode on
+
+#=================================================
 # INSTALL PLUGINS
 #=================================================
-systemctl stop nginx
 "$wpcli_alias" plugin is-installed wp-fail2ban-redux || "$wpcli_alias" plugin install wp-fail2ban-redux
 
 #=================================================
@@ -37,9 +41,14 @@ chown -R $app: $final_path
 chown root: $final_path/wp-config.php
 
 #=================================================
+# ACTIVE MAINTENANCE MODE
+#=================================================
+"$wpcli_alias" maintenance-mode off
+
+#=================================================
 # RELOAD NGINX
 #=================================================
-systemctl start nginx
+systemctl reload nginx
 
 #=================================================
 # REMOVE WP-CLI
