@@ -49,6 +49,7 @@ update_plugin page-links-to
 update_plugin revslider
 update_plugin sitepress-multilingual-cms
 update_plugin wp-booklet
+update_plugin wordfence
 
 #=================================================
 # SECURING FILES AND DIRECTORIES
