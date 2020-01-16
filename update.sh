@@ -1,4 +1,12 @@
 #!/bin/bash
+#
+# About: Update Wordpress automatically
+# Author: liberodark
+# License: GNU GPLv3
+
+version="0.0.1"
+
+echo "Welcome on WP Update Script $version"
 
 #=================================================
 # CHECK ROOT
