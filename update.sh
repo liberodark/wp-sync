@@ -18,9 +18,14 @@ update_plugin () {
 }
 
 #=================================================
-# UPDATE PLUGINS
+# INSTALL PLUGINS
 #=================================================
 systemctl stop nginx
+$wpcli_alias plugin is-installed wp-fail2ban-redux || $wpcli_alias plugin install wp-fail2ban-redux
+
+#=================================================
+# UPDATE PLUGINS
+#=================================================
 update_plugin contact-form-7
 update_plugin w3-total-cache
 update_plugin duplicate-post
