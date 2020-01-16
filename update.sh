@@ -10,18 +10,18 @@ if [[ $(id -u) -ne 0 ]] ; then echo "Please run as root" ; exit 1 ; fi
 # RETRIEVE ARGUMENTS FROM THE MANIFEST AND VAR
 #=================================================
 app=wordpress
-final_path=/var/www/$app
+final_path=/var/www/"$app"
 wget -nv https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -O $final_path/wp-cli.phar
 wpcli_alias="php $final_path/wp-cli.phar --allow-root --path=$final_path"
 update_plugin () {
-        ( $wpcli_alias plugin is-installed "$1" && $wpcli_alias plugin update "$1" ) || "$wpcli_alias"
+        ( "$wpcli_alias" plugin is-installed "$1" && "$wpcli_alias" plugin update "$1" ) || "$wpcli_alias"
 }
 
 #=================================================
 # INSTALL PLUGINS
 #=================================================
 systemctl stop nginx
-$wpcli_alias plugin is-installed wp-fail2ban-redux || $wpcli_alias plugin install wp-fail2ban-redux
+"$wpcli_alias" plugin is-installed wp-fail2ban-redux || "$wpcli_alias" plugin install wp-fail2ban-redux
 
 #=================================================
 # UPDATE PLUGINS
