@@ -50,6 +50,9 @@ update_plugin revslider
 update_plugin sitepress-multilingual-cms
 update_plugin wp-booklet
 update_plugin wordfence
+update_plugin wordpress-seo
+update_plugin seo-by-rank-math
+update_plugin tinymce-advanced
 
 #=================================================
 # SECURING FILES AND DIRECTORIES
