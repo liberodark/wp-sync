@@ -16,6 +16,7 @@ user=liberodark
 project=myproject
 http_server=apache
 chown_user=apache
+lock="/tmp/wp-sync.lock"
 
 exec 9>"${lock}"
 flock -n 9 || exit
