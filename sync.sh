@@ -17,6 +17,9 @@ project=myproject
 http_server=apache
 chown_user=apache
 
+exec 9>"${lock}"
+flock -n 9 || exit
+
 sync_rhel(){
       mkdir -p /var/www/${project}/
       cd /var/www/${project}/ || exit
