@@ -63,6 +63,18 @@ update_plugin seo-by-rank-math
 update_plugin tinymce-advanced
 
 #=================================================
+# DISABLE PLUGINS
+#=================================================
+
+#$wpcli_alias plugin deactivate --all
+
+#=================================================
+# CREATE ADMIN
+#=================================================
+
+#$wpcli_alias user create adminwp adminwp@example.com --role=administrator --user_pass=mypassword
+
+#=================================================
 # SECURING FILES AND DIRECTORIES
 #=================================================
 chown -R $app: $final_path
